@@ -3,7 +3,7 @@ require './lib/linked_list.rb'
 class HashMap
   def initialize
     @buckets = Array.new(16)
-    @length = 0
+    @entry_count = 0
   end
 
   def set(key, value)
@@ -16,7 +16,15 @@ class HashMap
       entry.value = value
     else
       list.append(key, value)
+      @entry_count += 1
     end
+  end
+
+  def get(key)
+    index = hash(key) % 16
+    list = @buckets[index]
+
+    list.find(key)
   end
 
   private

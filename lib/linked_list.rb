@@ -68,8 +68,9 @@ class LinkedList
 
     current = @head
 
-    until last_node?(current)
+    loop do
       return current.value if current.key == key
+      break if last_node?(current)
       current = current.next_node
     end
 
