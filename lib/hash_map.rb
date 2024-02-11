@@ -2,13 +2,12 @@ require './lib/linked_list.rb'
 
 class HashMap
   def initialize
-    @buckets = Array.new(16)
+    @buckets = Array.new(16, LinkedList.new)
     @entry_count = 0
   end
 
   def set(key, value)
     index = hash(key) % 16
-    @buckets[index] ||= LinkedList.new
     list = @buckets[index]
     entry = list.find(key)
 
@@ -25,6 +24,15 @@ class HashMap
     list = @buckets[index]
 
     list.find(key)
+  end
+
+  def has?(key)
+    index = hash(key) % 16
+    list = @buckets[index]
+
+    return false if list.nil?
+
+    list.contains?(key)
   end
 
   private

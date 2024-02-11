@@ -30,10 +30,11 @@ class LinkedList
     return 0 if empty_list?
 
     current = @head
-    counter = 1
+    counter = 0
 
-    until last_node?(current)
+    loop do
       counter += 1
+      break if last_node?(current)
       current = current.next_node
     end
 
@@ -55,8 +56,9 @@ class LinkedList
 
     current = @head
 
-    until last_node?(current)
+    loop do
       return true if current.key == key
+      break if last_node?(current)
       current = current.next_node
     end
 
