@@ -32,9 +32,8 @@ class LinkedList
     current = @head
     counter = 0
 
-    loop do
+    while current
       counter += 1
-      break if last_node?(current)
       current = current.next_node
     end
 
@@ -56,9 +55,8 @@ class LinkedList
 
     current = @head
 
-    loop do
+    while current
       return true if current.key == key
-      break if last_node?(current)
       current = current.next_node
     end
 
@@ -70,9 +68,8 @@ class LinkedList
 
     current = @head
 
-    loop do
+    while current
       return current.value if current.key == key
-      break if last_node?(current)
       current = current.next_node
     end
 
@@ -81,6 +78,15 @@ class LinkedList
 
   def empty_list?
     @head.nil?
+  end
+
+  def each
+    current = @head
+
+    while current
+      yield(current)
+      current = current.next_node
+    end
   end
 
   private
