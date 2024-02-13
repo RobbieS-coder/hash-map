@@ -76,6 +76,41 @@ class LinkedList
     nil
   end
 
+  def find_index(key)
+    current_index = 0
+    current = @head
+
+    while current
+      return current_index if current.key == key
+      current = current.next_node
+      current_index += 1
+    end
+
+    nil
+  end
+
+  def remove_at(index)
+    if index == 0
+      value = @head.value
+      @head = @head.next_node
+      value
+    else
+      current_index = 0
+      current = @head
+      previous = nil
+
+      until current_index == index
+        previous = current
+        current = current.next_node
+        current_index += 1
+      end
+
+      previous.next_node = current.next_node
+
+      current.value
+    end
+  end
+
   def empty_list?
     @head.nil?
   end

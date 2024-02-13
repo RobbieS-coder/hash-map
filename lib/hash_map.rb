@@ -26,19 +26,33 @@ class HashMap
   end
 
   def get(key)
-    index = hash(key) % 16
+    index = hash(key) % @capacity
     list = @buckets[index]
 
     list.find(key)
   end
 
   def has?(key)
-    index = hash(key) % 16
+    index = hash(key) % @capacity
     list = @buckets[index]
 
     return false if list.nil?
 
     list.contains?(key)
+  end
+
+  def remove(key)
+    index = hash(key) % @capacity
+    list = @buckets[index]
+
+    if has?(key)
+      list_index = list.find_index(key)
+      deleted_value = list.remove_at(list_index)
+      @entry_count -= 1
+      return deleted_value
+    end
+
+    nil
   end
 
   private
