@@ -73,6 +73,14 @@ class HashMap
     keys
   end
 
+  def values
+    values = []
+
+    entries.each { |entry| values << entry[1] }
+
+    values
+  end
+
   private
 
   def load_factor_exceeded?
