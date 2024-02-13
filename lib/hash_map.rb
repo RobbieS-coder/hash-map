@@ -81,12 +81,6 @@ class HashMap
     values
   end
 
-  private
-
-  def load_factor_exceeded?
-    (@entry_count.to_f / @capacity) > LOAD_FACTOR
-  end
-
   def entries
     arr = []
 
@@ -97,6 +91,12 @@ class HashMap
     end
 
     arr
+  end
+
+  private
+
+  def load_factor_exceeded?
+    (@entry_count.to_f / @capacity) > LOAD_FACTOR
   end
 
   def grow_capacity
