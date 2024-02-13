@@ -65,6 +65,14 @@ class HashMap
     @buckets = Array.new(@capacity) { LinkedList.new }
   end
 
+  def keys
+    keys = []
+
+    entries.each { |entry| keys << entry[0] }
+
+    keys
+  end
+
   private
 
   def load_factor_exceeded?
