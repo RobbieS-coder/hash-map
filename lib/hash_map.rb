@@ -55,6 +55,10 @@ class HashMap
     nil
   end
 
+  def length
+    @entry_count
+  end
+
   private
 
   def load_factor_exceeded?
