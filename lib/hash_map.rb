@@ -59,6 +59,12 @@ class HashMap
     @entry_count
   end
 
+  def clear
+    @entry_count = 0
+    @capacity = 16
+    @buckets = Array.new(@capacity) { LinkedList.new }
+  end
+
   private
 
   def load_factor_exceeded?
